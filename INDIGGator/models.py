@@ -45,4 +45,23 @@ class Question(models.Model):
     
     def __str__(self):
         return str(self.id)
-    
+
+class courseCompleted(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    isWeek1Completed = models.BooleanField(default=False)
+    isWeek2Completed = models.BooleanField(default=False)
+    isWeek3Completed = models.BooleanField(default=False)
+    isWeek4Completed = models.BooleanField(default=False)
+    score = models.CharField(max_length=200,null=True)
+
+    def __str__(self):
+        return "course"
+
+
+class Games(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    gameName = models.CharField(max_length=200,null=True)
+
+    def __str__(self):
+        return "self.user"
+

@@ -17,6 +17,22 @@
             {{user.myRefrealCode}}<br>
             {{user.isKycVerified}}
 
+
+            {% if coursesDoneByUser.isWeek1Completed %}
+                <h1>Week 1 completed</h1>
+            {% endif %}
+
+            {% if coursesDoneByUser.isWeek2Completed %}
+                <h1>Week 2 completed</h1>
+            {% endif %}
+
+            {% if coursesDoneByUser.isWeek3Completed %}
+                <h1>Week 3 completed</h1>
+            {% endif %}
+
+            {% if coursesDoneByUser.isWeek4Completed %}
+                <h1>Week 4 completed</h1>
+            {% endif %}
             <a href="/userpage/{{walletAddress}}/quiz/1"> Week 1</a>
             <a href="/userpage/{{walletAddress}}/quiz/2"> Week 2</a>
             <a href="/userpage/{{walletAddress}}/quiz/3"> Week 3</a>

@@ -85,11 +85,12 @@ def kycFileUploadDone(request,walletAddress):
 def UserPage(request,walletAddress):
     request.session['WalletAddress'] = walletAddress
     userobj  =User.objects.get(walletAddress=walletAddress)
-    context = {'walletAddress':walletAddress,'user':userobj}
+    try:
+        userCourses = courseCompleted.objects.get(user=userobj)
+    except:
+        userCourses = None
+    context = {'walletAddress':walletAddress,'user':userobj,'coursesDoneByUser':userCourses}
     return render(request,'userpage.html',context)
-
-
-
 
 def quizzPage(request,walletAddress,quizId):
     if request.method == 'POST':
@@ -113,8 +114,26 @@ def quizzPage(request,walletAddress,quizId):
                 wrong+=1
         percent = score/(total*10) *100
         canIsendNFT= False
-        if(percent>60):
+        
+        print(percent)
+        print(quizId)
+        if(percent >= 60):
             canIsendNFT=True
+            user = User.objects.get(walletAddress=walletAddress)
+            course,_ = courseCompleted.objects.get_or_create(user=user)
+            print('Helsdcsdcsdc  ')
+            print(course)
+            if(quizId=="1"):
+                course.isWeek1Completed = True
+            elif(quizId=="2"):
+                course.isWeek2Completed = True
+            elif(quizId=="3"):
+                course.isWeek3Completed = True
+            elif(quizId=="4"):
+                course.isWeek4Completed = True
+            course.save()
+
+
         context = {
             'score':score,
             'time': request.POST.get('timer'),

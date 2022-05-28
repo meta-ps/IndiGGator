@@ -5,3 +5,6 @@ admin.site.register(User)
 admin.site.register(KYCData)
 admin.site.register(Question)
 admin.site.register(NoOfWeeks)
+admin.site.register(Games)
+admin.site.register(courseCompleted)
+
