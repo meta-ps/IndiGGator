@@ -8,7 +8,8 @@ urlpatterns = [
     path('',Home,name='home'),
     path('checkKyc/<str:walletAddresss>/',isKycVerified_1,name='checkKyc'),
     path('uploadKyc/<str:walletAddress>/',kycFileUploadDone,name='kycFileUploadDone'),
-    path('userpage/<str:walletAddress>/',UserPage,name='userpage')
+    path('userpage/<str:walletAddress>/',UserPage,name='userpage'),
+    path('userpage/<str:walletAddress>/quiz/<str:quizId>/',quizzPage,name='quizzPage')
     
 
 ]

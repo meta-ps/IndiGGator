@@ -13,6 +13,7 @@ class User(models.Model):
     whoReferedMe = models.CharField(max_length=255,null=True,blank=True)
     myRefrealCode = models.CharField(max_length=255,null=True,blank=True)
     isKycVerified = models.CharField(max_length=255,null=True,blank=True,default="False")
+    
 
     def __str__(self):
         return self.walletAddress
@@ -26,3 +27,16 @@ class KYCData(models.Model):
 
     def __str__(self):
         return self.IdNumber
+
+
+class Question(models.Model):
+    questionHeading = models.CharField(max_length=255,null=False,blank=False)
+    op1 = models.CharField(max_length=200,null=True)
+    op2 = models.CharField(max_length=200,null=True)
+    op3 = models.CharField(max_length=200,null=True)
+    op4 = models.CharField(max_length=200,null=True)
+    ans = models.CharField(max_length=200,null=True)
+    
+    def __str__(self):
+        return str(self.id)
+    

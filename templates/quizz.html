@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INDIGGator</title>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+    <style>
+        p,
+        label {
+            font: 1rem 'Fira Sans', sans-serif;
+        }
+
+        input {
+            margin: .4rem;
+        }
+
+    </style>
+</head>
+<body>  
+
+    Quizz page {{quizId}}
+
+
+
+
+
+    <br/>
+    <br/>
+
+    {% for q  in questions%}
+
+    <fieldset>
+        <legend>{{q.id}}. {{q.questionHeading}}</legend>
+    
+        <div>
+          <input type="radio" id="{{q.op1}}" name="question1" value="{{q.op1}}"
+                 checked>
+          <label for="huey">{{q.op1}}</label>
+        </div>
+
+        <div>
+            <input type="radio" id="{{q.op2}}" name="question1" value="{{q.op2}}"
+                   checked>
+            <label for="{{q.op2}}">{{q.op2}}</label>
+        </div>
+
+
+          <div>
+            <input type="radio" id="{{q.op3}}" name="question1" value="{{q.op3}}"
+                   checked>
+            <label for="huey">{{q.op3}}</label>
+          </div>
+
+          <div>
+            <input type="radio" id="{{q.op4}}" name="question1" value="{{q.op4}}"
+                   checked>
+            <label for="huey">{{q.op4}}</label>
+          </div>
+    
+        
+        
+    </fieldset>
+    <br/>
+    {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

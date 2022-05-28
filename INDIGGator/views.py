@@ -19,8 +19,10 @@ def generateReferalCode():
 def Home(request):
     IsUserPresent = False
 
+
     if request.POST:
         WalletAddress = request.POST.get('WalletAddress')
+        request.session['WalletAddress'] = WalletAddress
         userName = request.POST.get('name')
         whoReferedMe = request.POST.get('referalCode')
         print(WalletAddress)
@@ -52,6 +54,7 @@ def Home(request):
     return render(request,'home.html',context)
 
 def isKycVerified_1(request,walletAddresss):
+    request.session['WalletAddress'] = walletAddresss
     print('Kyc User address ='+walletAddresss)
     user =User.objects.get(walletAddress =walletAddresss )
     isVerifiedUser = user.isKycVerified
@@ -63,6 +66,7 @@ def isKycVerified_1(request,walletAddresss):
 
 
 def kycFileUploadDone(request,walletAddress):
+    request.session['WalletAddress'] = walletAddress
     user = User.objects.get(walletAddress=walletAddress)
     documentFile = request.FILES['documentFile']    
     User.objects.filter(walletAddress=walletAddress).update(isKycVerified='docuploaded')
@@ -77,12 +81,15 @@ def kycFileUploadDone(request,walletAddress):
     return redirect('userpage',walletAddress)
     
 def UserPage(request,walletAddress):
+    request.session['WalletAddress'] = walletAddress
     context = {'walletAddress':walletAddress}
     return render(request,'userpage.html',context)
 
 
 
 
-    
-    
+def quizzPage(request,walletAddress,quizId):
 
+    questions = Question.objects.all()
+    context={'quizId':quizId,'questions':questions}
+    return render(request,'quizz.html',context  )
