@@ -7,7 +7,12 @@
     <title>INDIGGator</title>
     <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
 </head>
-<body>
+<body>  
+        {% if IsUserPresent %}
+
+                <p> User already present please login</p>
+
+        {% endif %}
         <button onClick="connectWallet();" id="connect-wallet"> MetaMask login</button>
         
                 <div >

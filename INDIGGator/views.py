@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from email import contentmanager
+from django.shortcuts import render,redirect
 from INDIGGator.models import *
 
 
 
 def generateReferalCode():
-    code_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    code_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmn'
     num_chars = 30
     code = ''
     for i in range(0, num_chars):
@@ -16,13 +17,13 @@ def generateReferalCode():
 
 # Create your views here.
 def Home(request):
+    IsUserPresent = False
 
     if request.POST:
         WalletAddress = request.POST.get('WalletAddress')
         userName = request.POST.get('name')
-        referalCode = request.POST.get('referalCode')
+        whoReferedMe = request.POST.get('referalCode')
         print(WalletAddress)
-        print(referalCode)
         print(userName)
         IsUserPresent = False
         try:
@@ -40,16 +41,48 @@ def Home(request):
             user.userName = userName
             user.walletAddress = WalletAddress
             user.myRefrealCode = generateReferalCode()
+            if whoReferedMe:
+                print(whoReferedMe)
+                user.whoReferedMe=whoReferedMe
+            user.save()
+            print('user saved')
+            return redirect('checkKyc',user.walletAddress)
+    
+    context={'IsUserPresent':IsUserPresent}
+    return render(request,'home.html',context)
+
+def isKycVerified_1(request,walletAddresss):
+    print('Kyc User address ='+walletAddresss)
+    user =User.objects.get(walletAddress =walletAddresss )
+    isVerifiedUser = user.isKycVerified
+    context = {'walletAddresss':walletAddresss}
+    if(isVerifiedUser=="False"):
+        return render(request,'kycForm.html',context)
+    else:
+        return redirect('userpage',walletAddresss)
+
+
+def kycFileUploadDone(request,walletAddress):
+    user = User.objects.get(walletAddress=walletAddress)
+    documentFile = request.FILES['documentFile']    
+    User.objects.filter(walletAddress=walletAddress).update(isKycVerified='docuploaded')
+    print(request.POST.get('fullname'))
+    kycdata  = KYCData.objects.get_or_create(user=user,FullName=request.POST.get('fullname'),
+        IdNumber=request.POST.get('IdNumber'),documentFile=documentFile
+    )
+
+    print('Hello World user verfid and doc uploaded')
+    context = {'walletAddresss':walletAddress}
+
+    return redirect('userpage',walletAddress)
+    
+def UserPage(request,walletAddress):
+    context = {'walletAddress':walletAddress}
+    return render(request,'userpage.html',context)
 
 
 
 
-    return render(request,'home.html')
-
-
-
-
-
-
-
+    
+    
 
