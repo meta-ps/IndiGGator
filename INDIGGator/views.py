@@ -36,7 +36,7 @@ def Home(request):
                 IsUserPresent = False
         except:
             pass
-        
+
         if(IsUserPresent==False):
             print('creating new user')
             user = User()
@@ -49,6 +49,8 @@ def Home(request):
             user.save()
             print('user saved')
             return redirect('checkKyc',user.walletAddress)
+        else:
+            return redirect('userpage',WalletAddress)
     
     context={'IsUserPresent':IsUserPresent}
     return render(request,'home.html',context)
