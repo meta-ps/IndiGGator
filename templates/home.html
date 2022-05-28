@@ -1,46 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INDIGGator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Poppins:300,600,700');
+
+    :root {
+        --gradient: linear-gradient(rgb(255,255,255), rgb(245,245,245));
+        --white: rgb(245,245,245);
+        --black: rgba(13,13,13,1);
+        --img-gradient: linear-gradient(145deg, rgba(17, 211, 180, .45) 55%, rgba(17, 211, 180, .55) 55%);
+    }
+
+    body {
+        margin: 0; padding: 0 10vw;
+        background: var(--gradient);
+        display: grid; grid-template-columns: 100%; grid-template-rows: 15% auto; grid-gap: 2rem;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    h1 {
+        margin: 2rem 0 0;
+        display: block;
+        position: relative; overflow-y: hidden;
+        font-size: calc(2rem + 1vw); letter-spacing: -1px;
+        color:rgba(89, 0, 255, 0.7);
+        background: white;
+    }
+
+    header {
+    margin: 0; padding: 0;
+    text-align: center; 
+    color: var(--white);
+    }
+ 
+    img {
+        object-fit: cover; 
+        width: 100%; height: 100%;
+    }
+
+    span {
+    width: 100%; height: 300px;
+    position: relative;
+    }
+
+    p {
+        margin: 0 auto;
+        max-width: 600px;
+        font-size: calc(1rem + .2vw);
+    }
+
+    h2, h3, h4, h5, h6 {
+        margin: 0 auto;
+        width: 600px; max-width: 100%;
+        line-height: 1;
+    }
+
+    h2 {
+        font-size: calc(1.66rem + 1vw);
+    }
+
+    h3 {
+        font-size: calc(1.33rem + 1vw);
+    }
+
+    footer {
+        margin: 1rem -10vw 0; padding: 0.75rem 10vw;
+        display: grid; grid-template-columns: 100%; align-items: center;
+        background: var(--black); color: var(--white);
+    }
+    </style>
 </head>
-<body>  
-        {% if IsUserPresent %}
 
-                <p> User already present please login</p>
+<body>
+    <header class="header navbar-expand-md navbar-light ">
+        <nav class="navbar ">
+          <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span> </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+              <ul class="navbar-nav">
+                <li class="nav-item li-color">
+                  <a class="btn home" style="color: #1f0b68; font-weight: 550;" href="#">Home</a>
+                </li>
+              </ul>
+              <div>
+                <button style="color:#000; border-radius: 50px" class="btn btn-warning" onClick="connectWallet();" id="connect-wallet"><strong style="font-weight: 550;">Login With Metamask 🦊</strong></button>
+              </div>
+            </div>
+          </div>
+          </div>
+          </div>
+        </nav>
+        <br>
+        <center><h1 style="background-color: rgba(255, 252, 230, 1);color:#4c0869"><b>IndiGGator</b></h1></center>        
+    </header>
+    <img src="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fd87c7ad3-9b08-4a4a-9772-e08e191145cd_5418x3048.png"/>
+    <br>
 
-        {% endif %}
-        <button onClick="connectWallet();" id="connect-wallet"> MetaMask login</button>
+    <p>
+    <strong style="color:rgb(64, 58, 58) ; font-weight: 560;">
+        IndiGGator is an application which enables gamers to apply for available scholarships, get educated about them via weekly quizzes conducted across the course. 
+        The users avail a NFT post their successful completion, with which they can avail some cool benefits.
+        We also provide a dashboard for the scholars to track their progress and view the allocated assets.    
+    </strong>
+    </p>
+
+   <br>
         
-                <div >
-                    <form method="post" action="{% url 'home' %}" >
-                        {% csrf_token %}
-    
-                        <input type="text" name="WalletAddress" value="Please Connect with wallet" id="WalletAddress" readonly required>
-                        <input type="text" name="name" id="username" placeholder="Enter name"  required/>
-                        <input type="text" name="referalCode" id="referalCode" placeholder="referalCode optional" />
-                        <button type="submit" id="btn-submit">Getting started</button>
+  <section class="vh-100">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-12 col-xl-11">
+          <div class="card text-black" style="border-radius: 25px;">
+            <div class="card-body p-md-5">
+              <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                  <section id="profile">
+                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4 create_profile" style="color:#9d36ca">Create Profile</p>
+
+                    <form method="post" action="{% url 'home' %}" enctype='multipart/form-data'
+                      class="mx-1 mx-md-4">
+                      {% csrf_token %}
+
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <div class="form-outline flex-fill mb-0">
+                        <input type="text" name="WalletAddress" value="Please Connect with wallet" id="WalletAddress" class="form-control input_text" readonly required>
+                        </div>
+                      </div>
+
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <div class="form-outline flex-fill mb-0">
+                            <input type="text" name="name" id="username" class="form-control input_text" placeholder="username*" required>
+                        </div>
+                      </div>
+
+                      <input type="text" id="wallet-address" name="wallet-address" class="form-control input_text"
+                        placeholder="Wallet" hidden>
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <div class="form-outline flex-fill mb-0">
+                        <input type="text" name="referalCode" id="referalCode" class="form-control input_text" placeholder="referral code" />
+                        </div>
+                      </div>
+
+                      <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                        <button type="submit" class="btn btn-primary btn-lg submitbutton" id="btn-submit">Get started</button>
+                      </div>
                     </form>
                 </div>
-    
-        <script>
-        async function connectWallet() {
+                <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                  <img
+                        src="https://lh3.googleusercontent.com/nwmPIPMcu-MeX-utG0fAcU7VhsmJUKkxYp6UJzn40FvHlpnyxo4FmhVsJNKRfP5vR65Hdmw3E72qk_c7TiVHFNqW6zUjgrbDog=w749"
+                        alt="Sample image" class="form_image">
+                </div>
+  </section>
+  </div>
 
-            if (window.ethereum) {
-                console.log(window.ethereum);
-                const provider_t = new ethers.providers.Web3Provider(window.ethereum);
-                const signer_t = provider_t.getSigner();
-                const allWalletAccounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                console.log(allWalletAccounts);
-                document.getElementById('WalletAddress').value = allWalletAccounts[0];
+  </div>
+  </div>
+  </div>
 
-                document.getElementById('connect-wallet').hidden = true;
-            }
-        }
-
-        </script>
 </body>
+
+    <footer>
+        <ul>
+            Contact Us
+        </ul>
+    </footer>
+
+    <script>
+    async function connectWallet() {
+
+        if (window.ethereum) {
+            console.log(window.ethereum);
+            const provider_t = new ethers.providers.Web3Provider(window.ethereum);
+            const signer_t = provider_t.getSigner();
+            const allWalletAccounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+            console.log(allWalletAccounts);
+            document.getElementById('WalletAddress').value = allWalletAccounts[0];
+
+            document.getElementById('connect-wallet').hidden = true;
+        }
+    }
+    </script>
 </html>
+
+
+
+
+
