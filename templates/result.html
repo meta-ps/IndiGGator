@@ -374,16 +374,16 @@
             let inputTokenContract="1"
             let contract = new ethers.Contract(contractAddress,ABI,signer)
             try{
-                await contract.safeTransferFrom(inputFrom, inputTo, 1,1,"");
+                await contract.safeTransferFrom(inputFrom, inputTo, 1,1,1);
+                window.alert('Trasnfered');
             }
             catch(error)
             {
+                console.log(error);
                 console.log('varma failed');
                 console.log(error.message);
             }
             
-            
-
             console.log('Hello Pradeep');
         }
         </script>
