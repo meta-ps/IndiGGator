@@ -20,67 +20,44 @@
 </head>
 <body>  
 
-    Quizz page {{quizId}}
-
-
-
-
-
-    <br/>
-    <br/>
-
-    {% for q  in questions%}
-
-    <fieldset>
-        <legend>{{q.id}}. {{q.questionHeading}}</legend>
-    
-        <div>
-          <input type="radio" id="{{q.op1}}" name="question1" value="{{q.op1}}"
-                 checked>
-          <label for="huey">{{q.op1}}</label>
+    <form method='post' action=''>
+        {% csrf_token %}
+        {% for q  in questions%}
+        <div class="form-group">
+          <label for="question">{{q.question}}</label>
         </div>
-
-        <div>
-            <input type="radio" id="{{q.op2}}" name="question1" value="{{q.op2}}"
-                   checked>
-            <label for="{{q.op2}}">{{q.op2}}</label>
-        </div>
-
-
-          <div>
-            <input type="radio" id="{{q.op3}}" name="question1" value="{{q.op3}}"
-                   checked>
-            <label for="huey">{{q.op3}}</label>
-          </div>
-
-          <div>
-            <input type="radio" id="{{q.op4}}" name="question1" value="{{q.op4}}"
-                   checked>
-            <label for="huey">{{q.op4}}</label>
-          </div>
-    
-        
-        
-    </fieldset>
-    <br/>
-    {% endfor %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <div class="form-check">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios1" value="option1" checked>
+                <label class="form-check-label" for="gridRadios1">
+                    {{q.op1}}
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios2" value="option2">
+                <label class="form-check-label" for="gridRadios2">
+                    {{q.op2}}
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios1" value="option3">
+                <label class="form-check-label" for="gridRadios1">
+                    {{q.op3}}
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios2" value="option4">
+                <label class="form-check-label" for="gridRadios2">
+                    {{q.op4}}
+                </label>
+            </div>
+            <br>
+        </div>    
+        {% endfor %}
+        <input id='timer' type='hidden' name="timer" value="">
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 
 
 

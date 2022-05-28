@@ -89,7 +89,44 @@ def UserPage(request,walletAddress):
 
 
 def quizzPage(request,walletAddress,quizId):
+    if request.method == 'POST':
+        print('Hello I am Here')
+        print(request.POST)
+        obj = NoOfWeeks.objects.get(quizzId=quizId)
+        questions = Question.objects.filter(weekId=obj)
+        score=0
+        wrong=0
+        correct=0
+        total=0
+        for q in questions:
+            total+=1
+            print("Question-> "+request.POST.get(q.question)+"  "+q.ans)
+            print()
+            print()
+            if q.ans ==  request.POST.get(q.question):
+                score+=10
+                correct+=1
+            else:
+                wrong+=1
+        percent = score/(total*10) *100
+        canIsendNFT= False
+        if(percent>60):
+            canIsendNFT=True
+        context = {
+            'score':score,
+            'time': request.POST.get('timer'),
+            'correct':correct,
+            'wrong':wrong,
+            'percent':percent,
+            'total':total,
+            'canIsendNFT':canIsendNFT,
+            'walletAddress':walletAddress
+        }
+        return render(request,'result.html',context)
 
-    questions = Question.objects.all()
+
+
+    obj = NoOfWeeks.objects.get(quizzId=quizId)
+    questions = Question.objects.filter(weekId=obj)
     context={'quizId':quizId,'questions':questions}
     return render(request,'quizz.html',context  )

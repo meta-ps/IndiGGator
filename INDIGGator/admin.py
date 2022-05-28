@@ -4,3 +4,4 @@ from INDIGGator.models import *
 admin.site.register(User)
 admin.site.register(KYCData)
 admin.site.register(Question)
+admin.site.register(NoOfWeeks)

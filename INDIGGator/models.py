@@ -28,9 +28,15 @@ class KYCData(models.Model):
     def __str__(self):
         return self.IdNumber
 
+class NoOfWeeks(models.Model):
+    quizzId = models.CharField(max_length=255,null=False,blank=False)
+
+    def __str__(self):
+        return self.quizzId
 
 class Question(models.Model):
-    questionHeading = models.CharField(max_length=255,null=False,blank=False)
+    weekId = models.ForeignKey(NoOfWeeks,on_delete=models.CASCADE)
+    question = models.CharField(max_length=255,null=False,blank=False)
     op1 = models.CharField(max_length=200,null=True)
     op2 = models.CharField(max_length=200,null=True)
     op3 = models.CharField(max_length=200,null=True)
