@@ -84,7 +84,8 @@ def kycFileUploadDone(request,walletAddress):
     
 def UserPage(request,walletAddress):
     request.session['WalletAddress'] = walletAddress
-    context = {'walletAddress':walletAddress}
+    userobj  =User.objects.get(walletAddress=walletAddress)
+    context = {'walletAddress':walletAddress,'user':userobj}
     return render(request,'userpage.html',context)
 
 
