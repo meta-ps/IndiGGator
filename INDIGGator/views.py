@@ -137,14 +137,17 @@ def quizzPage(request,walletAddress,quizId):
             print(course)
             if(quizId=="1"):
                 course.isWeek1Completed = True
+                course.score1 = percent
             elif(quizId=="2"):
                 course.isWeek2Completed = True
+                course.score2 = percent
             elif(quizId=="3"):
                 course.isWeek3Completed = True
+                course.score3 = percent
             elif(quizId=="4"):
                 course.isWeek4Completed = True
+                course.score4 = percent
 
-            course.score = score
             course.save()
 
 
@@ -176,7 +179,7 @@ def LogIn(request):
     except:
         context={'IsUserPresent':False}
         return render(request,'home.html',context)
-    
+
 def AdminPanel(request):
     if request.POST:
         print('hello')

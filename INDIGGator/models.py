@@ -53,7 +53,11 @@ class courseCompleted(models.Model):
     isWeek2Completed = models.BooleanField(default=False)
     isWeek3Completed = models.BooleanField(default=False)
     isWeek4Completed = models.BooleanField(default=False)
-    score = models.CharField(max_length=200,null=True)
+    score1 = models.CharField(max_length=200,null=True,blank=True)
+    score2 = models.CharField(max_length=200,null=True,blank=True)
+    score3 = models.CharField(max_length=200,null=True,blank=True)
+    score4 = models.CharField(max_length=200,null=True,blank=True)
+
 
     def __str__(self):
         return "course"
