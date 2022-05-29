@@ -86,11 +86,21 @@ def kycFileUploadDone(request,walletAddress):
 def UserPage(request,walletAddress):
     request.session['WalletAddress'] = walletAddress
     userobj  =User.objects.get(walletAddress=walletAddress)
+    noOfNfts =0
     try:
         userCourses = courseCompleted.objects.get(user=userobj)
+        if userCourses.isWeek1Completed:
+            noOfNfts+=1
+        if userCourses.isWeek2Completed:
+            noOfNfts+=1
+        if userCourses.isWeek3Completed:
+            noOfNfts+=1
+        if userCourses.isWeek4Completed:
+            noOfNfts+=1
+        
     except:
         userCourses = None
-    context = {'walletAddress':walletAddress,'user':userobj,'coursesDoneByUser':userCourses}
+    context = {'walletAddress':walletAddress,'user':userobj,'coursesDoneByUser':userCourses,'noOfNfts':noOfNfts}
     return render(request,'userpage.html',context)
 
 def quizzPage(request,walletAddress,quizId):

@@ -109,10 +109,10 @@
                                                 <h3 class="h2 text-black mb-0">{{user.userName}}</h3>
                                             <ul class="list-unstyled mb-1-9">
                                                 <li class="mb-2 mb-xl-3 display-28" style="padding-top:30px"><span class="display-26 text-secondary me-2 font-weight-600">Wallet Address:</span> {{user.walletAddress}}</li>
-                                                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Experience:</span> 10 Years</li>
                                                 <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Referal Code:</span> {{user.myRefrealCode}}</li>
-                                                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">NFTs Owned: </span> </li>
+                                                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">NFTs Owned: </span> {{noOfNfts}}</li>
                                                 <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Twitter Handle: {{user.twitterHandle}}  <img style="width:40px" src={% static 'twitter-icon.png'  %}/></span> </li>
+                                                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">User Verified:</span> {{user.isKycVerified}}</li>
 
                                             </ul>
                                         </div>
