@@ -6,6 +6,7 @@ from django.conf import settings
 urlpatterns = [
 
     path('',Home,name='home'),
+    path('user/',LogIn,name='login'),
     path('checkKyc/<str:walletAddresss>/',isKycVerified_1,name='checkKyc'),
     path('uploadKyc/<str:walletAddress>/',kycFileUploadDone,name='kycFileUploadDone'),
     path('userpage/<str:walletAddress>/',UserPage,name='userpage'),

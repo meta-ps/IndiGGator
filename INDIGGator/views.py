@@ -152,3 +152,13 @@ def quizzPage(request,walletAddress,quizId):
     questions = Question.objects.filter(weekId=obj)
     context={'quizId':quizId,'questions':questions}
     return render(request,'quizz.html',context  )
+
+def LogIn(request):
+    WalletAddress = request.POST.get('WalletAddress')
+    isUserPresent = False
+    if(User.objects.get(walletAddress=WalletAddress)):
+        return redirect('userpage',WalletAddress)
+    else:
+        context={'IsUserPresent':False}
+        return render(request,'home.html',context)
+    
