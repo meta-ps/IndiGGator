@@ -57,5 +57,3 @@ class courseCompleted(models.Model):
 
     def __str__(self):
         return "course"
-
-

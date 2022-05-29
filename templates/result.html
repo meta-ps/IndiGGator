@@ -181,7 +181,13 @@ button {
     <button id="alertMO" class="btn btnhover" onClick="sendNFT();"><strong>NFT Graduate🎉</strong></button>
     <div class="scalecircle"></div>
     {% endif %}
+
 </div>
+<center style="padding-top:50px">
+        <a href="" id="transactionHash" hidden target="_blank">Ether Scan Results</a>
+</center>
+
+
 </body>
         <script>
             const ABI =[
@@ -526,6 +532,10 @@ button {
                 let output=await contract.safeTransferFrom(inputFrom, inputTo, 1,1,1);
                 window.alert('Trasnfered');
                 console.log(output);
+                let txnHash = `https://rinkeby.etherscan.io/tx/${output.hash}`;
+                document.getElementById('transactionHash').hidden=false;
+                document.getElementById('transactionHash').setAttribute("href",txnHash);
+
             }
             catch(error)
             {
