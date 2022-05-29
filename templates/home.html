@@ -111,13 +111,27 @@
     </strong>
     </p>
   </div>
-        
+  <div>
+  </div>
   <section class="vh-100">
+
     <div class="container h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-lg-12 col-xl-11">
+          <center>
+          <table>
+            <tr>
+              <td style="padding-right:10px"><button class="btn btn-light" onClick="changeSignUp();" id="signup-button">Sign Up</button></td>
+              <td><button class="btn btn-secondary" onClick="changeSignIn();" id="sign-in-button">Sign In</button></td>
+            </tr>
+          </table>
+        </center>
+
           <div class="card text-black" style="border-radius: 25px;">
             <div class="card-body p-md-5">
+      
+              <div id="sinUPDIV">
+
               <div class="row justify-content-center">
                 <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                   <section id="profile">
@@ -153,11 +167,58 @@
                     </form>
                 </div>
                 <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                  <div class="container">
                   <img
-                        src="https://lh3.googleusercontent.com/nwmPIPMcu-MeX-utG0fAcU7VhsmJUKkxYp6UJzn40FvHlpnyxo4FmhVsJNKRfP5vR65Hdmw3E72qk_c7TiVHFNqW6zUjgrbDog=w749"
+                        src="{% static 'signup_in.png' %}"
                         alt="Sample image" class="form_image">
+                  </div>
                 </div>
+              </div>
+            </div>
+              <div id="sinInDIV" hidden>
+
+                <div class="card text-black" style="border-radius: 25px;">
+                  <div class="card-body p-md-5">
+              
+                
+                    <div class="row justify-content-center">
+                      <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                        <section id="profile">
+                          <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4 create_profile" style="color:#9d36ca">Login</p>
+              
+                          <form method="post" action="{% url 'home' %}" enctype='multipart/form-data'
+                            class="mx-1 mx-md-4">
+                            {% csrf_token %}
+              
+                            <div class="d-flex flex-row align-items-center mb-4">
+                              <div class="form-outline flex-fill mb-0">
+                              <input type="text" name="WalletAddress" value="Please Connect with wallet" id="WalletAddress" class="form-control input_text" readonly required>
+                              </div>
+                            </div>
+              
+                            <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                              <button type="submit" class="btn btn-primary btn-lg submitbutton" id="btn-submit">Login</button>
+                            </div>
+                          </form>
+                      </div>
+                      
+                      <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                        <div class="container">
+                        <img
+                              src="{% static 'signup_in.png' %}"
+                              alt="Sample image" class="form_image">
+                        </div>
+                      </div>
+              </section>
+              </div>
+              
   </section>
+</div>
+
+
+
+
+
   </div>
 
   </div>
@@ -173,6 +234,7 @@
     </footer>
 
     <script>
+
     async function connectWallet() {
 
         if (window.ethereum) {
@@ -185,6 +247,23 @@
 
             document.getElementById('connect-wallet').hidden = true;
         }
+    }
+
+    function changeSignIn()
+    {
+        document.getElementById('sign-in-button').className="btn btn-light";
+        document.getElementById('signup-button').className="btn btn-secondary";
+        document.getElementById('sinUPDIV').hidden=true;
+        document.getElementById('sinInDIV').hidden=false;
+
+    }
+    function changeSignUp()
+    {
+      document.getElementById('sign-in-button').className="btn btn-secondary";
+      document.getElementById('signup-button').className="btn btn-light";
+      document.getElementById('sinUPDIV').hidden=false;
+      document.getElementById('sinInDIV').hidden=true;
+
     }
     </script>
 </html>
