@@ -88,20 +88,28 @@ def UserPage(request,walletAddress):
     request.session['WalletAddress'] = walletAddress
     userobj  =User.objects.get(walletAddress=walletAddress)
     noOfNfts =0
+    week1Score=0
+    week2Score=0
+    week3Score=0
+    week4Score=0
     try:
         userCourses = courseCompleted.objects.get(user=userobj)
         if userCourses.isWeek1Completed:
             noOfNfts+=1
+            week1Score = userCourses.score1
         if userCourses.isWeek2Completed:
             noOfNfts+=1
+            week2Score = userCourses.score2
         if userCourses.isWeek3Completed:
             noOfNfts+=1
+            week3Score = userCourses.score3
         if userCourses.isWeek4Completed:
             noOfNfts+=1
-        
+            week4Score = userCourses.score4
     except:
         userCourses = None
-    context = {'walletAddress':walletAddress,'user':userobj,'coursesDoneByUser':userCourses,'noOfNfts':noOfNfts}
+    
+    context = {'walletAddress':walletAddress,'user':userobj,'coursesDoneByUser':userCourses,'noOfNfts':noOfNfts,'week1Score':week1Score,'week2Score':week2Score,'week3Score':week3Score,'week4Score':week4Score}
     return render(request,'userpage.html',context)
 
 def quizzPage(request,walletAddress,quizId):
@@ -137,14 +145,17 @@ def quizzPage(request,walletAddress,quizId):
             print(course)
             if(quizId=="1"):
                 course.isWeek1Completed = True
+                course.score1 = percent
             elif(quizId=="2"):
                 course.isWeek2Completed = True
+                course.score2 = percent
             elif(quizId=="3"):
                 course.isWeek3Completed = True
+                course.score3 = percent
             elif(quizId=="4"):
                 course.isWeek4Completed = True
+                course.score4 = percent
 
-            course.score = score
             course.save()
 
 
@@ -160,8 +171,6 @@ def quizzPage(request,walletAddress,quizId):
         }
         return render(request,'result.html',context)
 
-
-
     obj = NoOfWeeks.objects.get(quizzId=quizId)
     questions = Question.objects.filter(weekId=obj)
     context={'quizId':quizId,'questions':questions}
@@ -176,7 +185,7 @@ def LogIn(request):
     except:
         context={'IsUserPresent':False}
         return render(request,'home.html',context)
-    
+
 def AdminPanel(request):
     if request.POST:
         print('hello')
