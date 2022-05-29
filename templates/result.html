@@ -523,8 +523,9 @@ button {
             let inputTokenContract="1"
             let contract = new ethers.Contract(contractAddress,ABI,signer)
             try{
-                await contract.safeTransferFrom(inputFrom, inputTo, 1,1,1);
+                let output=await contract.safeTransferFrom(inputFrom, inputTo, 1,1,1);
                 window.alert('Trasnfered');
+                console.log(output);
             }
             catch(error)
             {

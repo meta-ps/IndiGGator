@@ -85,7 +85,11 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
           <ul class="navbar-nav">
             <li class="nav-item li-color">
-              <a class="btn home" style="color: #1f0b68; font-weight: 550;" href="">Home</a>
+              <form method="post"  action="{% url 'adminpanel' %}" >
+                {% csrf_token %}
+                <input type="text" name="admin-address" id="admin-address" hidden/>
+                <input type="submit" class="btn home" style="color: #1f0b68; font-weight: 550;" value="Admin"/>
+              </form>
             </li>
           </ul>
           <div>
@@ -257,7 +261,7 @@
             console.log(allWalletAccounts);
             document.getElementById('WalletAddress').value = allWalletAccounts[0];
             document.getElementById('WalletAddress-si').value = allWalletAccounts[0];
-
+            document.getElementById('admin-address').value = allWalletAccounts[0];
 
             document.getElementById('connect-wallet').hidden = true;
         }

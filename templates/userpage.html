@@ -123,23 +123,6 @@
             
 
 
-{% if coursesDoneByUser.isWeek1Completed %}
-<h3>Week 1 completed</h3>
-{% endif %}
-
-{% if coursesDoneByUser.isWeek2Completed %}
-<h3>Week 2 completed</h3>
-{% endif %}
-
-{% if coursesDoneByUser.isWeek3Completed %}
-<h3>Week 3 completed</h3>
-{% endif %}
-
-{% if coursesDoneByUser.isWeek4Completed %}
-<h3>Week 4 completed</h3>
-{% endif %}
-<br>
-
 
     <div class="container">				
 
@@ -148,7 +131,7 @@
                     <div class="col-xs-12 col-sm-8 col-md-4">				
                         <div class="section-status card">
                             <div class="img-container">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Android_O_Preview_Logo.png/768px-Android_O_Preview_Logo.png" alt="">
+                                <img src="{% static 'week-logo.png' %}"  alt="">
                             </div>
                             <div class="text">
                                 <p class="title">
@@ -157,17 +140,27 @@
                                 <small class="sub-title mey-text-color-gray">
                                 </small>
                             </div>
+                            {% if coursesDoneByUser.isWeek1Completed %}
+
+                            <div class="footer">
+                                <a href="" class="btn btn-success mey-btn mey-btn-md">
+                                    Completed
+                                </a>
+                            </div>
+                            {% else %}
                             <div class="footer">
                                 <a href="/userpage/{{walletAddress}}/quiz/1" class="btn btn-primary mey-btn mey-btn-md">
                                     Go
                                 </a>
                             </div>
+                            {% endif %}
+
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-8 col-md-4">				
                         <div class="section-status card">
                             <div class="img-container">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Android_O_Preview_Logo.png/768px-Android_O_Preview_Logo.png" alt="">
+                                <img src="{% static 'week-logo.png' %}" alt="">
                             </div>
                             <div class="text">
                                 <p class="title">
@@ -176,17 +169,27 @@
                                 <small class="sub-title mey-text-color-gray">
                                 </small>
                             </div>
+                            {% if coursesDoneByUser.isWeek2Completed %}
+
+                            <div class="footer">
+                                <a href="" class="btn btn-success mey-btn mey-btn-md">
+                                    Completed
+                                </a>
+                            </div>
+                            {% else %}
                             <div class="footer">
                                 <a href="/userpage/{{walletAddress}}/quiz/2" class="btn btn-primary mey-btn mey-btn-md">
                                     Go
                                 </a>
                             </div>
+                            {% endif %}
+
                         </div>				
                     </div>	
                     <div class="col-xs-12 col-sm-8 col-md-4">				
                         <div class="section-status card">
                             <div class="img-container">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Android_O_Preview_Logo.png/768px-Android_O_Preview_Logo.png" alt="">
+                                <img src="{% static 'week-logo.png' %}"  alt="">
                             </div>
                             <div class="text">
                                 <p class="title">
@@ -195,17 +198,27 @@
                                 <small class="sub-title mey-text-color-gray">
                                 </small>
                             </div>
+                            {% if coursesDoneByUser.isWeek3Completed %}
+
+                            <div class="footer">
+                                <a href="" class="btn btn-success mey-btn mey-btn-md">
+                                    Completed
+                                </a>
+                            </div>
+                            {% else %}
                             <div class="footer">
                                 <a href="/userpage/{{walletAddress}}/quiz/3" class="btn btn-primary mey-btn mey-btn-md">
                                     Go
                                 </a>
                             </div>
+                            {% endif %}
+
                         </div>				
                     </div>
                     <div class="col-xs-12 col-sm-8 col-md-4">				
                         <div class="section-status card">
                             <div class="img-container">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Android_O_Preview_Logo.png/768px-Android_O_Preview_Logo.png" alt="">
+                                <img src="{% static 'week-logo.png' %}" alt="">
                             </div>
                             <div class="text">
                                 <p class="title">
@@ -214,16 +227,28 @@
                                 <small class="sub-title mey-text-color-gray">
                                 </small>
                             </div>
+                            {% if coursesDoneByUser.isWeek4Completed %}
+
+                            <div class="footer">
+                                <a href="" class="btn btn-success mey-btn mey-btn-md">
+                                    Completed
+                                </a>
+                            </div>
+                            {% else %}
                             <div class="footer">
                                 <a href="/userpage/{{walletAddress}}/quiz/4" class="btn btn-primary mey-btn mey-btn-md">
                                     Go
                                 </a>
                             </div>
+                            {% endif %}
+
                         </div>				
                     </div>						
                 </div>
             </div>
         </div>
+    </div>
+    
             <br><br><br>
 
 
