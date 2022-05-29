@@ -7,16 +7,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">	
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c8ee3dd930.js"></script>
     <title>INDIGGator</title>
     <style>
-        		body{
+        body{
 			background: rgb(255,255,255);
 		}
 		.card{
 			box-shadow: 0 0 15px rgba(0,0,0,0.07);
 			margin: 1rem 0;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
 			border-radius: 1rem;
 		}
+        h1 {
+            font-size: 34px;
+            padding-left:35px;
+            font-weight: bold;
+            font-family: 'Open Sans', sans-serif;
+
+            margin-bottom: 0;
+        }
+        h2 {
+            font-size: 18px;
+            letter-spacing: 0.5px;
+            font-weight: 300;
+        }
 		.page-header{
 			display: flex;
 			align-items: center;
@@ -86,15 +102,78 @@
 			padding: 1rem 1.8rem;
 			border-radius: 3rem;
 		}
+        .cards-list {
+        z-index: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        }
+
+        .card-game {
+        margin: 30px auto;
+        width: 300px;
+        height: 300px;
+        border-radius: 40px;
+        box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+        cursor: pointer;
+        transition: 0.4s;
+        }
+
+        .card-game .card_image {
+        width: inherit;
+        height: inherit;
+        border-radius: 40px;
+        }
+
+        .card-game .card_image img {
+        width: inherit;
+        height: inherit;
+        border-radius: 40px;
+        object-fit: cover;
+        }
+
+        .card-game .card_title {
+        text-align: center;
+        border-radius: 0px 0px 40px 40px;
+        font-family: sans-serif;
+        font-weight: bold;
+        font-size: 30px;
+        margin-top: -80px;
+        height: 40px;
+        }
+
+        .card-game:hover {
+        transform: scale(0.9, 0.9);
+        box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), 
+            -5px -5px 30px 15px rgba(0,0,0,0.22);
+        }
+        .title{
+            font-family: sans-serif;
+            font-size: 20px;
+
+        }
+        .title-white {
+        color: white;
+        }
+
+        .title-black {
+        color: black;
+        }
+
+        @media all and (max-width: 500px) {
+        .card-list {
+            /* On small screens, we are no longer using row direction but column */
+            flex-direction: column;
+        }
+        }
+
     </style>
     <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
 </head>
         <body>  
        
           
-            
-
-
             <section class="bg-light">
                 <div class="container">
                     <div class="row">
@@ -106,7 +185,7 @@
                                             <img src="{% static 'userlogo.png' %}" alt="userlogo">
                                         </div>
                                         <div class="col-lg-6 px-xl-10">
-                                                <h3 class="h2 text-black mb-0">{{user.userName}}</h3>
+                                                <h3 class="h2 text-black mb-0"><b>{{user.userName}}</b></h3>
                                             <ul class="list-unstyled mb-1-9">
                                                 <li class="mb-2 mb-xl-3 display-28" style="padding-top:30px"><span class="display-26 text-secondary me-2 font-weight-600">Wallet Address:</span> {{user.walletAddress}}</li>
                                                 <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Referal Code:</span> {{user.myRefrealCode}}</li>
@@ -123,9 +202,9 @@
             
 
 
-
     <div class="container">				
-
+        <h1>Weekly Progress...</h1>
+        <br>
             <div class="container">				
                 <div class="row">
                     <div class="col-xs-12 col-sm-8 col-md-4">				
@@ -248,14 +327,44 @@
             </div>
         </div>
     </div>
+<br><br>
+    <h1>Discover games</h1>
+
+
+    <br><br>
+    <div class="cards-list">
+  
+        <div class="card-game">
+          <div class="card_image"> <img src="https://www.giantbomb.com/a/uploads/scale_small/38/388755/3038862-poster%20square.png" /> </div>
+          <div class="card_title title-white">
+          </div>
+        </div>
+        
+          <div class="card-game">
+          <div class="card_image">
+            <img src="https://www.giantbomb.com/a/uploads/scale_small/14/148570/2209208-nyan.jpg" />
+            </div>
+          <div class="card_title title-white">
+          </div>
+        </div>
+        
+        <div class="card-game">
+          <div class="card_image">
+            <img src="https://pbs.twimg.com/media/FAR9_U7XoAUaZgq?format=jpg&name=small" />
+          </div>
+          <div class="card_title">
+          </div>
+        </div>
+          
     
-            <br><br><br>
+    <br><br>
+    <br><br>
 
 
-            <footer>
-                <ul>
-                </ul>
-            </footer>
+    <footer>
+        <ul>
+        </ul>
+    </footer>
         
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>	
