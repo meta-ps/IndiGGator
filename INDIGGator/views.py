@@ -1,4 +1,5 @@
 from email import contentmanager
+from multiprocessing import context
 from django.shortcuts import render,redirect
 from INDIGGator.models import *
 
@@ -142,6 +143,8 @@ def quizzPage(request,walletAddress,quizId):
                 course.isWeek3Completed = True
             elif(quizId=="4"):
                 course.isWeek4Completed = True
+
+            course.score = score
             course.save()
 
 
@@ -174,3 +177,18 @@ def LogIn(request):
         context={'IsUserPresent':False}
         return render(request,'home.html',context)
     
+def AdminPanel(request):
+    if request.POST:
+        print('hello')
+        print(request.POST.get('admin-address'))
+    user = User.objects.all()
+    course = courseCompleted.objects.all()
+
+    final_data= []
+    for i in course:
+        final_data.append([i.user.userName,i.user.twitterHandle,i.user.walletAddress,i.user.myRefrealCode,i.user.isKycVerified,i.isWeek1Completed,i.isWeek2Completed,i.isWeek3Completed,i.isWeek4Completed])
+
+
+
+    context={'allUserData':final_data}
+    return render(request,'adminpanel.html',context)

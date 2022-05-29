@@ -123,14 +123,6 @@
             
 
 
-{% if coursesDoneByUser.isWeek1Completed %}
-<h1>Week 1 completed</h1>
-{% endif %}
-
-{% if coursesDoneByUser.isWeek2Completed %}
-<h1>Week 2 completed</h1>
-{% endif %}
-
 {% if coursesDoneByUser.isWeek3Completed %}
 <h1>Week 3 completed</h1>
 {% endif %}
@@ -157,11 +149,21 @@
                                 <small class="sub-title mey-text-color-gray">
                                 </small>
                             </div>
+                            {% if coursesDoneByUser.isWeek1Completed %}
+
+                            <div class="footer">
+                                <a href="" class="btn btn-success mey-btn mey-btn-md">
+                                    Completed
+                                </a>
+                            </div>
+                            {% else %}
                             <div class="footer">
                                 <a href="/userpage/{{walletAddress}}/quiz/1" class="btn btn-primary mey-btn mey-btn-md">
                                     Go
                                 </a>
                             </div>
+                            {% endif %}
+
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-8 col-md-4">				
@@ -176,11 +178,21 @@
                                 <small class="sub-title mey-text-color-gray">
                                 </small>
                             </div>
+                            {% if coursesDoneByUser.isWeek2Completed %}
+
+                            <div class="footer">
+                                <a href="" class="btn btn-success mey-btn mey-btn-md">
+                                    Completed
+                                </a>
+                            </div>
+                            {% else %}
                             <div class="footer">
                                 <a href="/userpage/{{walletAddress}}/quiz/2" class="btn btn-primary mey-btn mey-btn-md">
                                     Go
                                 </a>
                             </div>
+                            {% endif %}
+
                         </div>				
                     </div>	
                     <div class="col-xs-12 col-sm-8 col-md-4">				
@@ -195,11 +207,21 @@
                                 <small class="sub-title mey-text-color-gray">
                                 </small>
                             </div>
+                            {% if coursesDoneByUser.isWeek3Completed %}
+
+                            <div class="footer">
+                                <a href="" class="btn btn-success mey-btn mey-btn-md">
+                                    Completed
+                                </a>
+                            </div>
+                            {% else %}
                             <div class="footer">
                                 <a href="/userpage/{{walletAddress}}/quiz/3" class="btn btn-primary mey-btn mey-btn-md">
                                     Go
                                 </a>
                             </div>
+                            {% endif %}
+
                         </div>				
                     </div>
                     <div class="col-xs-12 col-sm-8 col-md-4">				
@@ -214,16 +236,28 @@
                                 <small class="sub-title mey-text-color-gray">
                                 </small>
                             </div>
+                            {% if coursesDoneByUser.isWeek4Completed %}
+
+                            <div class="footer">
+                                <a href="" class="btn btn-success mey-btn mey-btn-md">
+                                    Completed
+                                </a>
+                            </div>
+                            {% else %}
                             <div class="footer">
                                 <a href="/userpage/{{walletAddress}}/quiz/4" class="btn btn-primary mey-btn mey-btn-md">
                                     Go
                                 </a>
                             </div>
+                            {% endif %}
+
                         </div>				
                     </div>						
                 </div>
             </div>
         </div>
+    </div>
+    
             <br><br><br>
 
 
