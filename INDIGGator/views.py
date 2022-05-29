@@ -6,7 +6,7 @@ from INDIGGator.models import *
 
 def generateReferalCode():
     code_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmn'
-    num_chars = 30
+    num_chars = 5
     code = ''
     for i in range(0, num_chars):
         slice_start = random.randint(0, len(code_chars) - 1)
@@ -42,6 +42,7 @@ def Home(request):
             user = User()
             user.userName = userName
             user.walletAddress = WalletAddress
+            user.twitterHandle = request.POST.get('twitterHandle')
             user.myRefrealCode = generateReferalCode()
             if whoReferedMe:
                 print(whoReferedMe)
@@ -156,9 +157,10 @@ def quizzPage(request,walletAddress,quizId):
 def LogIn(request):
     WalletAddress = request.POST.get('WalletAddress')
     isUserPresent = False
-    if(User.objects.get(walletAddress=WalletAddress)):
+    try:
+        userobj=User.objects.get(walletAddress=WalletAddress)
         return redirect('userpage',WalletAddress)
-    else:
+    except:
         context={'IsUserPresent':False}
         return render(request,'home.html',context)
     

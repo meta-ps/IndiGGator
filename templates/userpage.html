@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -89,45 +90,58 @@
     <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
 </head>
         <body>  
-            {% if coursesDoneByUser.isWeek1Completed %}
-            <h1>Week 1 completed</h1>
-        {% endif %}
+       
+          
+            
 
-        {% if coursesDoneByUser.isWeek2Completed %}
-            <h1>Week 2 completed</h1>
-        {% endif %}
 
-        {% if coursesDoneByUser.isWeek3Completed %}
-            <h1>Week 3 completed</h1>
-        {% endif %}
+            <section class="bg-light">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 mb-4 mb-sm-5">
+                            <div class="card card-style1 border-0">
+                                <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-6 mb-4 mb-lg-0">
+                                            <img src="{% static 'userlogo.png' %}" alt="userlogo">
+                                        </div>
+                                        <div class="col-lg-6 px-xl-10">
+                                                <h3 class="h2 text-black mb-0">{{user.userName}}</h3>
+                                            <ul class="list-unstyled mb-1-9">
+                                                <li class="mb-2 mb-xl-3 display-28" style="padding-top:30px"><span class="display-26 text-secondary me-2 font-weight-600">Wallet Address:</span> {{user.walletAddress}}</li>
+                                                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Experience:</span> 10 Years</li>
+                                                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Referal Code:</span> {{user.myRefrealCode}}</li>
+                                                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">NFTs Owned: </span> </li>
+                                                <li class="mb-2 mb-xl-3 display-28"><span class="display-26 text-secondary me-2 font-weight-600">Twitter Handle: {{user.twitterHandle}}  <img style="width:40px" src={% static 'twitter-icon.png'  %}/></span> </li>
 
-        {% if coursesDoneByUser.isWeek4Completed %}
-            <h1>Week 4 completed</h1>
-        {% endif %}
-        <a href="/userpage/{{walletAddress}}/quiz/1"> Week 1</a>
-        <a href="/userpage/{{walletAddress}}/quiz/2"> Week 2</a>
-        <a href="/userpage/{{walletAddress}}/quiz/3"> Week 3</a>
-        <a href="/userpage/{{walletAddress}}/quiz/4"> Week 4</a>
-<br><br>
-            <header class="header navbar-expand-md navbar-light ">
-                <nav class="navbar ">
-                  <div class="container-fluid">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="navbar-toggler-icon"></span> </button>
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-           
-                      <div>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-                  </div>
-                </nav>
-                <br>
-                <center><h1 style="background-color: rgba(255, 252, 230, 1);color:#4c0869"><b>IndiGGator</b></h1></center>        
-            </header>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+
+
+{% if coursesDoneByUser.isWeek1Completed %}
+<h1>Week 1 completed</h1>
+{% endif %}
+
+{% if coursesDoneByUser.isWeek2Completed %}
+<h1>Week 2 completed</h1>
+{% endif %}
+
+{% if coursesDoneByUser.isWeek3Completed %}
+<h1>Week 3 completed</h1>
+{% endif %}
+
+{% if coursesDoneByUser.isWeek4Completed %}
+<h1>Week 4 completed</h1>
+{% endif %}
 <br>
+
+
+    <div class="container">				
 
             <div class="container">				
                 <div class="row">
@@ -209,6 +223,7 @@
                     </div>						
                 </div>
             </div>
+        </div>
             <br><br><br>
 
 

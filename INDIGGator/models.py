@@ -9,6 +9,7 @@ import random
 
 class User(models.Model):
     userName = models.CharField(max_length=255,null=False,blank=False)
+    twitterHandle= models.CharField(max_length=255,null=True,blank=False)
     walletAddress = models.CharField(max_length=255,null=False,blank=False)
     whoReferedMe = models.CharField(max_length=255,null=True,blank=True)
     myRefrealCode = models.CharField(max_length=255,null=True,blank=True)
