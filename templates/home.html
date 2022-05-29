@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{%  load static %}
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,26 +21,17 @@
     }
 
     body {
-        margin: 0; padding: 0 10vw;
         background: var(--gradient);
-        display: grid; grid-template-columns: 100%; grid-template-rows: 15% auto; grid-gap: 2rem;
         font-family: 'Poppins', sans-serif;
     }
 
     h1 {
-        margin: 2rem 0 0;
-        display: block;
         position: relative; overflow-y: hidden;
         font-size: calc(2rem + 1vw); letter-spacing: -1px;
         color:rgba(89, 0, 255, 0.7);
         background: white;
     }
 
-    header {
-    margin: 0; padding: 0;
-    text-align: center; 
-    color: var(--white);
-    }
  
     img {
         object-fit: cover; 
@@ -77,45 +68,49 @@
         display: grid; grid-template-columns: 100%; align-items: center;
         background: var(--black); color: var(--white);
     }
+    .text-align{
+      text-align: justify;
+      text-justify: inter-word;    
+    }
     </style>
 </head>
 
 <body>
-    <header class="header navbar-expand-md navbar-light ">
-        <nav class="navbar ">
-          <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span> </button>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-              <ul class="navbar-nav">
-                <li class="nav-item li-color">
-                  <a class="btn home" style="color: #1f0b68; font-weight: 550;" href="#">Home</a>
-                </li>
-              </ul>
-              <div>
-                <button style="color:#000; border-radius: 50px" class="btn btn-warning" onClick="connectWallet();" id="connect-wallet"><strong style="font-weight: 550;">Login With Metamask 🦊</strong></button>
-              </div>
-            </div>
+  <header class="header navbar-expand-md navbar-light ">
+    <nav class="navbar ">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span> </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <li class="nav-item li-color">
+              <a class="btn home" style="color: #1f0b68; font-weight: 550;" href="">Home</a>
+            </li>
+          </ul>
+          <div>
+            <button style="color:#000; border-radius: 50px" class="btn btn-warning" onClick="connectWallet();" id="connect-wallet"><strong style="font-weight: 550;">Login With Metamask 🦊</strong></button>
           </div>
-          </div>
-          </div>
-        </nav>
-        <br>
-        <center><h1 style="background-color: rgba(255, 252, 230, 1);color:#4c0869"><b>IndiGGator</b></h1></center>        
-    </header>
-    <img src="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fd87c7ad3-9b08-4a4a-9772-e08e191145cd_5418x3048.png"/>
+        </div>
+      </div>
+      </div>
+      </div>
+    </nav>
     <br>
-
+    <center><h1 style="background-color: rgba(255, 252, 230, 1);color:#4c0869"><b>IndiGGator</b></h1></center>        
+</header>
+  <div class="container">
+    <img src="{% static 'logo.png' %}" class="img-fluid"  style="padding:50px;" />
+  </div>
+    <div class="text-align">
     <p>
-    <strong style="color:rgb(64, 58, 58) ; font-weight: 560;">
+    <strong style="color:rgb(64, 58, 58) ; font-weight: 500;">
         IndiGGator is an application which enables gamers to apply for available scholarships, get educated about them via weekly quizzes conducted across the course. 
         The users avail a NFT post their successful completion, with which they can avail some cool benefits.
         We also provide a dashboard for the scholars to track their progress and view the allocated assets.    
     </strong>
     </p>
-
-   <br>
+  </div>
         
   <section class="vh-100">
     <div class="container h-100">
