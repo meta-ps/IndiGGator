@@ -88,20 +88,28 @@ def UserPage(request,walletAddress):
     request.session['WalletAddress'] = walletAddress
     userobj  =User.objects.get(walletAddress=walletAddress)
     noOfNfts =0
+    week1Score=0
+    week2Score=0
+    week3Score=0
+    week4Score=0
     try:
         userCourses = courseCompleted.objects.get(user=userobj)
         if userCourses.isWeek1Completed:
             noOfNfts+=1
+            week1Score = userCourses.score1
         if userCourses.isWeek2Completed:
             noOfNfts+=1
+            week2Score = userCourses.score2
         if userCourses.isWeek3Completed:
             noOfNfts+=1
+            week3Score = userCourses.score3
         if userCourses.isWeek4Completed:
             noOfNfts+=1
-        
+            week4Score = userCourses.score4
     except:
         userCourses = None
-    context = {'walletAddress':walletAddress,'user':userobj,'coursesDoneByUser':userCourses,'noOfNfts':noOfNfts}
+    
+    context = {'walletAddress':walletAddress,'user':userobj,'coursesDoneByUser':userCourses,'noOfNfts':noOfNfts,'week1Score':week1Score,'week2Score':week2Score,'week3Score':week3Score,'week4Score':week4Score}
     return render(request,'userpage.html',context)
 
 def quizzPage(request,walletAddress,quizId):
@@ -162,8 +170,6 @@ def quizzPage(request,walletAddress,quizId):
             'walletAddress':walletAddress
         }
         return render(request,'result.html',context)
-
-
 
     obj = NoOfWeeks.objects.get(quizzId=quizId)
     questions = Question.objects.filter(weekId=obj)
